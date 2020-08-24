@@ -1,6 +1,6 @@
 local bytebuffer = include("bytebuffer/bytebuffer.lua")
 
-local LJBC_VERSION = "0.1.1"
+local LJBC_VERSION = "0.1.3"
 local ljbc = {}
 
 -- Placeholder value used when a table of flat protos is transformed into a hierarchial proto
