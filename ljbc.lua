@@ -1,4 +1,4 @@
-local bytebuffer = include("bytebuffer.lua")
+local bytebuffer = include("bytebuffer/bytebuffer.lua")
 
 local LJBC_VERSION = "0.1.1"
 local ljbc = {}
