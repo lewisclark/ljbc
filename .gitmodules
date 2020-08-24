@@ -1,0 +1,3 @@
+[submodule "bytebuffer"]
+	path = bytebuffer
+	url = git@github.com:lewisclark/bytebuffer.git
