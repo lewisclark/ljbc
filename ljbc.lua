@@ -93,14 +93,14 @@ ljbc.opcode_mapping = {
 }
 
 function ljbc.opcode_to_name(op, bytecode_ver)
-	local opcodes = echo.opcode_mapping[bytecode_ver]
+	local opcodes = ljbc.opcode_mapping[bytecode_ver]
 	assert(istable(opcodes))
 
 	return opcodes[op]
 end
 
 function ljbc.opname_to_opcode(opname, bytecode_ver)
-	local opcodes = echo.opcode_mapping[bytecode_ver]
+	local opcodes = ljbc.opcode_mapping[bytecode_ver]
 	assert(istable(opcodes))
 
 	opname = string.upper(opname)
@@ -123,7 +123,7 @@ function ljbc.parse(bytecode)
 	chunk.version = buf:uint8()
 
 	-- Do we support this bytecode version?
-	assert(istable(echo.opcode_mapping[chunk.version]))
+	assert(istable(ljbc.opcode_mapping[chunk.version]))
 
 	-- Read the bytecode flags
 	chunk.flags = ljbc.read_flags(buf)
