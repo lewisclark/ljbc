@@ -110,6 +110,8 @@ function ljbc.opname_to_opcode(opname, bytecode_ver)
 			return k
 		end
 	end
+
+	error("invalid opname given")
 end
 
 function ljbc.parse(bytecode)
