@@ -136,7 +136,7 @@ function ljbc.parse(bytecode)
 	-- Read the protos from the bytecode
 	chunk.protos = {}
 	while buf:peek_byte() ~= 0 do
-		table.insert(chunk.protos, ljbc.read_proto(buf, is_stripped))
+		table.insert(chunk.protos, ljbc.read_proto(buf, is_stripped, chunk.version))
 	end
 
 	-- It's the end of the protos+ block and the bytecode dump
@@ -150,7 +150,7 @@ function ljbc.read_flags(buf)
 end
 
 -- lengthU pdata
-function ljbc.read_proto(buf, is_stripped)
+function ljbc.read_proto(buf, is_stripped, bytecode_ver)
 	local proto_len = buf:uleb128()
 	local start_pos = buf:get_pos()
 
@@ -180,7 +180,7 @@ function ljbc.read_proto(buf, is_stripped)
 	-- bcinsW* uvdataH* kgc* knum* [debugB*]
 	proto.ins = {}
 	for i = 0, proto.num_ins - 1 do
-		table.insert(proto.ins, i, ljbc.decode_ins(buf:uint32()))
+		table.insert(proto.ins, i, ljbc.decode_ins(buf:uint32(), bytecode_ver))
 	end
 
 	proto.uv = {}
@@ -298,7 +298,7 @@ function ljbc.read_ktabk(buf)
 end
 
 -- Decodes a 32-bit instruction
-function ljbc.decode_ins(ins)
+function ljbc.decode_ins(ins, bytecode_ver)
 	local ins_d = {
 		opcode = bit.band(ins, 0xff),
 		a = bit.band(bit.rshift(ins, 8), 0xff),
@@ -307,7 +307,7 @@ function ljbc.decode_ins(ins)
 		d = bit.band(bit.rshift(ins, 16), 0xffff),
 	}
 
-	ins_d.opcode_name = ljbc.opcode_to_name(ins_d.opcode)
+	ins_d.opcode_name = ljbc.opcode_to_name(ins_d.opcode, bytecode_ver)
 
 	return ins_d
 end
