@@ -83,11 +83,12 @@ function ljbc.parse(bytecode)
 	local buf = bytebuffer.new(bytecode)
 	local chunk = {}
 
-	-- Ensure the given bytecode is valid and the correct version
-	local is_valid, invalid_reason = ljbc.read_validate(buf)
-	if not is_valid then
-		return false
-	end
+	-- Ensure the given bytecode has the magic
+	assert(buf:read_string(3) == "\x1bLJ")
+
+	-- Read the bytecode version
+	chunk.version = buf:uint8()
+	assert(chunk.version == 1 or chunk.version == 2)
 
 	-- Read the bytecode flags
 	chunk.flags = ljbc.read_flags(buf)
@@ -107,18 +108,6 @@ function ljbc.parse(bytecode)
 	assert(buf:uint8() == 0 and buf:eof())
 
 	return ljbc.protos_to_tree(chunk.protos)
-end
-
-function ljbc.read_validate(buf)
-	if buf:read_string(3) ~= "\x1bLJ" then
-		return false, "magic"
-	end
-
-	if buf:uint8() ~= 1 then
-		return false, "version"
-	end
-
-	return true
 end
 
 function ljbc.read_flags(buf)
