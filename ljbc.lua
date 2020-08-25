@@ -107,7 +107,7 @@ function ljbc.parse(bytecode)
 	-- It's the end of the protos+ block and the bytecode dump
 	assert(buf:uint8() == 0 and buf:eof())
 
-	return ljbc.protos_to_tree(chunk.protos)
+	return ljbc.protos_to_tree(chunk.protos), chunk
 end
 
 function ljbc.read_flags(buf)
