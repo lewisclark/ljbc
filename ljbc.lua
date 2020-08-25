@@ -52,32 +52,65 @@ ljbc.PrimitiveType = {
 	[2] = true,
 }
 
-ljbc.opcode_names = {
-	[0] = "ISLT",	[1] = "ISGE",	[2] = "ISLE",	[3] = "ISGT",
-	[4] = "ISEQV",	[5] = "ISNEV",	[6] = "ISEQS",	[7] = "ISNES",
-	[8] = "ISEQN",	[9] = "ISNEN",	[10] = "ISEQP",	[11] = "ISNEP",
-	[12] = "ISTC",	[13] = "ISFC",	[14] = "IST",	[15] = "ISF",
-	[16] = "MOV",	[17] = "NOT",	[18] = "UNM",	[19] = "LEN",
-	[20] = "ADDVN",	[21] = "SUBVN",	[22] = "MULVN",	[23] = "DIVVN",
-	[24] = "MODVN",	[25] = "ADDNV",	[26] = "SUBNV",	[27] = "MULNV",
-	[28] = "DIVNV",	[29] = "MODNV",	[30] = "ADDVV",	[31] = "SUBVV",
-	[32] = "MULVV",	[33] = "DIVVV",	[34] = "MODVV",	[35] = "POW",
-	[36] = "CAT",	[37] = "KSTR",	[38] = "KCDATA",[39] = "KSHORT",
-	[40] = "KNUM",	[41] = "KPRI",	[42] = "KNIL",	[43] = "UGET",
-	[44] = "USETV",	[45] = "USETS",	[46] = "USETN",	[47] = "USETP",
-	[48] = "UCLO",	[49] = "FNEW",	[50] = "TNEW",	[51] = "TDUP",
-	[52] = "GGET",	[53] = "GSET",	[54] = "TGETV",	[55] = "TGETS",
-	[56] = "TGETB",	[57] = "TSETV",	[58] = "TSETS",	[59] = "TSETB",
-	[60] = "TSETM",	[61] = "CALLM",	[62] = "CALL",	[63] = "CALLMT",
-	[64] = "CALLT",	[65] = "ITERC",	[66] = "ITERN",	[67] = "VARG",
-	[68] = "ISNEXT",[69] = "RETM",	[70] = "RET",	[71] = "RET0",
-	[72] = "RET1",	[73] = "FORI",	[74] = "JFORI",	[75] = "FORL",
-	[76] = "IFORL",	[77] = "JFORL",	[78] = "ITERL",	[79] = "IITERL",
-	[80] = "JITERL",[81] = "LOOP",	[82] = "ILOOP",	[83] = "JLOOP",
-	[84] = "JMP",	[85] = "FUNCF",	[86] = "IFUNCF",[87] = "JFUNCF",
-	[88] = "FUNCV",	[89] = "IFUNCV",[90] = "JFUNCV",[91] = "FUNCC",
-	[92] = "FUNCCW",
+ljbc.opcode_mapping = {
+	[1] = {
+		[0] = "ISLT",	"ISGE",	"ISLE",		"ISGT",		"ISEQV",	"ISNEV",
+		"ISEQS",	"ISNES",	"ISEQN",	"ISNEN",	"ISEQP",	"ISNEP",
+		"ISTC",		"ISFC",		"IST",		"ISF",		"MOV",		"NOT",
+		"UNM",		"LEN",		"ADDVN",	"SUBVN",	"MULVN",	"DIVVN",
+		"MODVN",	"ADDNV", 	"SUBNV",	"MULNV", 	"DIVNV",	"MODNV", 
+		"ADDVV",	"SUBVV", 	"MULVV",	"DIVVV",	"MODVV",	"POW",
+		"CAT",		"KSTR",		"KCDATA",	"KSHORT", 	"KNUM",		"KPRI",
+		"KNIL",		"UGET", 	"USETV",	"USETS", 	"USETN",	"USETP",
+		"UCLO",		"FNEW",		"TNEW",		"TDUP", 	"GGET",		"GSET",
+		"TGETV",	"TGETS", 	"TGETB", 	"TSETV",	"TSETS",	"TSETB",
+		"TSETM", 	"CALLM",	"CALL",		"CALLMT", 	"CALLT",	"ITERC",
+		"ITERN",	"VARG", 	"ISNEXT",	"RETM",		"RET",		"RET0",
+		"RET1",		"FORI",		"JFORI",	"FORL", 	"IFORL",	"JFORL",
+		"ITERL",	"IITERL", 	"JITERL",	"LOOP",		"ILOOP",	"JLOOP",
+		"JMP",		"FUNCF",	"IFUNCF",	"JFUNCF",	"FUNCV",	"IFUNCV",
+		"JFUNCV",	"FUNCC",	"FUNCCW",
+	},
+	[2] = {
+		[0] = "ISLT",	"ISGE",	"ISLE",		"ISGT",		"ISEQV",	"ISNEV",
+		"ISEQS",	"ISNES",	"ISEQN",	"ISNEN",	"ISEQP",	"ISNEP",
+		"ISTC",		"ISFC",		"IST",		"ISF",		"ISTYPE",	"ISNUM",
+		"MOV",		"NOT",		"UNM",		"LEN",		"ADDVN",	"SUBVN",
+		"MULVN",	"DIVVN",	"MODVN",	"ADDNV",	"SUBNV",	"MULNV",
+		"DIVNV",	"MODNV",	"ADDVV",	"SUBVV",	"MULVV",	"DIVVV",
+		"MODVV",	"POW",		"CAT",		"KSTR",		"KCDATA",	"KSHORT",
+		"KNUM",		"KPRI",		"KNIL",		"UGET",		"USETV",	"USETS",
+		"USETN",	"USETP",	"UCLO",		"FNEW",		"TNEW",		"TDUP",
+		"GGET",		"GSET",		"TGETV",	"TGETS",	"TGETB",	"TGETR",
+		"TSETV",	"TSETS",	"TSETB",	"TSETM",	"TSETR",	"CALLM",
+		"CALL",		"CALLMT",	"CALLT",	"ITERC",	"ITERN",	"VARG",
+		"ISNEXT",	"RETM",		"RET",		"RET0",		"RET1",		"FORI",
+		"JFORI",	"FORL",		"IFORL",	"JFORL",	"ITERL",	"IITERL",
+		"JITERL",	"LOOP",		"ILOOP",	"JLOOP",	"JMP",		"FUNCF",
+		"IFUNCF",	"JFUNCF",	"FUNCV",	"IFUNCV",	"JFUNCV",	"FUNCC",
+		"FUNCCW",
+	},
 }
+
+function ljbc.opcode_to_name(op, bytecode_ver)
+	local opcodes = echo.opcode_mapping[bytecode_ver]
+	assert(istable(opcodes))
+
+	return opcodes[op]
+end
+
+function ljbc.opname_to_opcode(opname, bytecode_ver)
+	local opcodes = echo.opcode_mapping[bytecode_ver]
+	assert(istable(opcodes))
+
+	opname = string.upper(opname)
+
+	for k, v in pairs(opcodes) do
+		if v == opname then
+			return k
+		end
+	end
+end
 
 function ljbc.parse(bytecode)
 	local buf = bytebuffer.new(bytecode)
@@ -88,7 +121,9 @@ function ljbc.parse(bytecode)
 
 	-- Read the bytecode version
 	chunk.version = buf:uint8()
-	assert(chunk.version == 1 or chunk.version == 2)
+
+	-- Do we support this bytecode version?
+	assert(istable(echo.opcode_mapping[chunk.version]))
 
 	-- Read the bytecode flags
 	chunk.flags = ljbc.read_flags(buf)
@@ -272,7 +307,7 @@ function ljbc.decode_ins(ins)
 		d = bit.band(bit.rshift(ins, 16), 0xffff),
 	}
 
-	ins_d.opcode_name = ljbc.opcode_names[ins_d.opcode]
+	ins_d.opcode_name = ljbc.opcode_to_name(ins_d.opcode)
 
 	return ins_d
 end
